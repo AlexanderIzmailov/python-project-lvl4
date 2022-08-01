@@ -42,7 +42,7 @@ bcrypt = ["bcrypt"]
 name = "gunicorn"
 version = "20.1.0"
 description = "WSGI HTTP Server for UNIX"
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.5"
 
@@ -82,7 +82,7 @@ python-versions = ">=2"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "1d8043fac44704f5988e1ff93b39d26df3afb5c1e7ee3e1e793f84725a7687f3"
+content-hash = "7937bc9673b7d172cf041dd50e740c06c2bb028d89d000a9aeba907a5a1097c9"
 
 [metadata.files]
 asgiref = [
