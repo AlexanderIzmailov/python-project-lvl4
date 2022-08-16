@@ -18,6 +18,15 @@ from django.urls import path
 from task_manager import views
 
 urlpatterns = [
-    path('', views.index),
-    # path('admin/', admin.site.urls),
+    path('', views.base, name='home'),
+    # path('users/', views.users, name='users'),
+    path('users/', views.Users.as_view(), name='users_list'),
+    path('users/<int:pk>/details/', views.UsersDetail.as_view(), name='users_details'),
+    path('users/create/', views.UsersCreate.as_view(), name='users_create'),
+    path('users/<int:pk>/update/', views.UpdateUser.as_view(), name='users_update'),
+    path('users/<int:pk>/delete/', views.DeleteUser.as_view(), name='users_delete'),
+    path('login/', views.LoginUser.as_view(), name='user_login'),
+    path('logout/', views.logout_user, name='user_logout'),
+    path('admin/', admin.site.urls),
+    path('test/', views.TestPage.as_view(), name="test_page"),
 ]
