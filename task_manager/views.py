@@ -13,6 +13,8 @@ from django.http import HttpResponse
 from django.contrib import messages
 from django.utils.translation import gettext as _
 from django.contrib.messages.views import SuccessMessageMixin
+from .models import *
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 def base(request):
@@ -28,7 +30,7 @@ def base(request):
 
 class Users(ListView):
     model = User
-    template_name = "users.html"
+    template_name = "users_list.html"
 
 
 class UsersCreate(SuccessMessageMixin, CreateView):
@@ -59,10 +61,11 @@ class UpdateUser(SuccessMessageMixin, UpdateView):
         return super().dispatch(request, *args, **kwargs)
 
 
-class DeleteUser(DeleteView):
+class DeleteUser(SuccessMessageMixin, DeleteView):
     model = User
     template_name = "users_delete.html"
     success_url = reverse_lazy('users_list')
+    success_message = _('Пользователь удален!')
 
     def dispatch(self, request, *args, **kwargs):
         if not request.user.is_authenticated or self.get_object().pk is not request.user.id and not request.user.is_superuser:
@@ -74,6 +77,17 @@ class DeleteUser(DeleteView):
 
 
 class TestPage(TemplateView):
+    template_name = "test.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # context['aaa'] = 'Privet!'
+        context['aaa'] = self.request.user.id
+        return context
+
+
+class TestPage2(ListView):
+    model = User
     template_name = "test.html"
 
     def get_context_data(self, **kwargs):
@@ -97,3 +111,33 @@ def logout_user(request):
     messages.success(request, _("Вы вышли!"))
     return redirect('users_list')
 
+
+class StatusList(LoginRequiredMixin, ListView):
+    model = Status
+    template_name = "statuses_list.html"
+    login_url = reverse_lazy('user_login')
+
+
+class StatusCreate(LoginRequiredMixin, SuccessMessageMixin, CreateView):
+    form_class = MyCreateStatusForm
+    template_name = "statuses_create.html"
+    success_url = reverse_lazy('statuses_list')
+    success_message = _('Статус создан!')
+    login_url = reverse_lazy('user_login')
+
+
+class UpdateStatus(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
+    model = Status
+    form_class = MyCreateStatusForm
+    template_name = "statuses_create.html"
+    success_url = reverse_lazy('statuses_list')
+    success_message = _('Статус изменен!')
+    login_url = reverse_lazy('user_login')
+
+
+class DeleteStatus(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
+    model = Status
+    template_name = "statuses_delete.html"
+    success_url = reverse_lazy('statuses_list')
+    success_message = _('Статус удален!')
+    login_url = reverse_lazy('user_login')

@@ -29,4 +29,9 @@ urlpatterns = [
     path('logout/', views.logout_user, name='user_logout'),
     path('admin/', admin.site.urls),
     path('test/', views.TestPage.as_view(), name="test_page"),
+    path('test2/', views.TestPage2.as_view(), name="test_page2"),
+    path('statuses/', views.StatusList.as_view(), name='statuses_list'),
+    path('statuses/create/', views.StatusCreate.as_view(), name='statuses_create'),
+    path('statuses/<int:pk>/update/', views.UpdateStatus.as_view(), name='statuses_update'),
+    path('statuses/<int:pk>/delete/', views.DeleteStatus.as_view(), name='statuses_delete'),
 ]

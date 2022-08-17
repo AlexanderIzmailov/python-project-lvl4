@@ -2,6 +2,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django import forms
 from django.utils.translation import gettext as _
+from .models import *
 
 
 class MyRegisterUserForm(UserCreationForm):
@@ -15,4 +16,12 @@ class MyRegisterUserForm(UserCreationForm):
     class Meta:
         model = User
         fields = ('username', 'first_name', 'last_name', 'password1', 'password2')
+
+
+class MyCreateStatusForm(forms.ModelForm):
+    name = forms.CharField(label=_('Статус'), widget=forms.TextInput(attrs={'class': 'form-input'}))
+
+    class Meta:
+        model = Status
+        fields = ('name',)
 
