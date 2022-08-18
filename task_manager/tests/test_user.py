@@ -12,6 +12,11 @@ class TestUser(TestCase):
         user.save()
 
 
+    def test_user_list_without_auth(self):
+        response = self.client.get(reverse('users_list'))
+        assert response.status_code == 200
+
+
     def test_creating_user(self):
         response = self.client.post(reverse('users_create'), {
             'username': 'AlIz',
@@ -46,13 +51,29 @@ class TestUser(TestCase):
         
         response = self.client.post(reverse('users_update', args=[1]), {
             'username': 'AlIz',
-            'first_name': 'Alexander',
+            'first_name': 'Alexander_2',
             'last_name': 'Izmailov',
             'password1': 'pss12asddaSA',
             'password2': 'pss12asddaSA'
         })
 
         user = User.objects.get(id=1)
+        assert user.first_name == "Alexander_2"
+
+
+    def test_updating_user_without_auth(self):
+        response = self.client.post(reverse('users_update', args=[1]), {
+            'username': 'AlIz',
+            'first_name': 'Alexander_2',
+            'last_name': 'Izmailov',
+            'password1': 'pss12asddaSA',
+            'password2': 'pss12asddaSA'
+        })
+
+        user = User.objects.get(id=1)
+
+        assert response.url == "/login/"
+        assert response.status_code == 302
         assert user.first_name == "Alexander"
 
 
@@ -61,3 +82,11 @@ class TestUser(TestCase):
         response = self.client.post(reverse('users_delete', args=[1]))
         users = User.objects.all().count()
         assert users == 0
+
+
+    def test_deleting_user_without_auth(self):
+        response = self.client.post(reverse('users_delete', args=[1]))
+        users = User.objects.all().count()
+        assert response.url == "/login/"
+        assert response.status_code == 302
+        assert users == 1

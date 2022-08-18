@@ -25,3 +25,13 @@ class MyCreateStatusForm(forms.ModelForm):
         model = Status
         fields = ('name',)
 
+
+class MyCreateTaskForm(forms.ModelForm):
+    name = forms.CharField(label=_('Имя'), widget=forms.TextInput(attrs={'class': 'form-input'}))
+    description = forms.CharField(label=_('Описание'), required = False, widget=forms.Textarea(attrs={'cols': '40', 'rows': '10', 'class': 'form-input'}))
+    status = forms.ModelChoiceField(label=_('Статус'), queryset=Status.objects.all())
+    executor = forms.ModelChoiceField(label=_('Исполнитель'), required = False, queryset=User.objects.all())
+
+    class Meta:
+        model = Task
+        fields = ('name', 'description', 'status', 'executor')

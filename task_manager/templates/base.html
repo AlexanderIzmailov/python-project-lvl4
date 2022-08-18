@@ -24,7 +24,10 @@
                 {% if request.user.is_authenticated %}
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'statuses_list' %}">{% translate "Статусы" %}<span class="sr-only"></span></a>
-                </li>                
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'tasks_list' %}">{% translate "Задачи" %}<span class="sr-only"></span></a>
+                </li>                  
                 {% endif %}
             </ul>
             <ul class="navbar-nav">
