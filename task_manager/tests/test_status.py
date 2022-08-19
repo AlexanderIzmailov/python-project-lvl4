@@ -13,10 +13,10 @@ class TestStatus(TestCase):
         user.save()
 
 
-    def test_access_to_statuses_list_without_auth(self):
+    def test_access_to_statuses_list(self):
         response = self.client.login(username='test_user', password='12345')
         response = self.client.get(reverse('statuses_list'))
-        assert response.response_code == 200
+        assert response.status_code == 200
 
 
     def test_access_to_statuses_list_without_auth(self):

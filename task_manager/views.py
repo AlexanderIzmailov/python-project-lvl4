@@ -262,7 +262,7 @@ class TaskDelete( SuccessMessageMixin, DeleteView):
         return super().dispatch(request, *args, **kwargs)
 
 
-class TaskDetail(LoginRequiredMixin, DetailView):
+class TaskDetail(DetailView):
     model = Task
     template_name = 'tasks_detail.html'
     context_object_name = 'task_detail'
@@ -273,3 +273,70 @@ class TaskDetail(LoginRequiredMixin, DetailView):
             messages.error(request, _("Вы не авторизованы! Пожалуйста, выполните вход."))
             return redirect('user_login')
         return super().dispatch(request, *args, **kwargs)
+
+
+class LabelList(LoginRequiredMixin, ListView):
+    model = Label
+    template_name = "labels_list.html"
+    login_url = reverse_lazy('user_login')
+
+
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_authenticated:
+            messages.error(request, _("Вы не авторизованы! Пожалуйста, выполните вход."))
+            return redirect('user_login')
+        return super().dispatch(request, *args, **kwargs)
+
+
+class LabelCreate(LoginRequiredMixin, SuccessMessageMixin, CreateView):
+    form_class = MyCreateLabelForm
+    template_name = "labels_create.html"
+    success_url = reverse_lazy('labels_list')
+    success_message = _('Метка создана!')
+    login_url = reverse_lazy('user_login')
+
+
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_authenticated:
+            messages.error(request, _("Вы не авторизованы! Пожалуйста, выполните вход."))
+            return redirect('user_login')
+        return super().dispatch(request, *args, **kwargs)
+
+
+class LabelUpdate(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
+    model = Label
+    form_class = MyCreateLabelForm
+    template_name = "labels_create.html"
+    success_url = reverse_lazy('labels_list')
+    success_message = _('Метка изменена!')
+    login_url = reverse_lazy('user_login')
+
+
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_authenticated:
+            messages.error(request, _("Вы не авторизованы! Пожалуйста, выполните вход."))
+            return redirect('user_login')
+        return super().dispatch(request, *args, **kwargs)
+
+
+class LabelDelete(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
+    model = Label
+    template_name = "labels_delete.html"
+    success_url = reverse_lazy('labels_list')
+    success_message = _('Метка удалена!')
+    login_url = reverse_lazy('user_login')
+
+
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_authenticated:
+            messages.error(request, _("Вы не авторизованы! Пожалуйста, выполните вход."))
+            return redirect('user_login')
+        return super().dispatch(request, *args, **kwargs)
+
+
+    def post(self, request, *args, **kwargs):
+        if self.get_object().task_set.all():
+            messages.error(request, _('Невозможно удалить метку, потому что он связана с задачей.'))
+            return redirect('labels_list')
+
+        return super().post(request, *args, **kwargs)
