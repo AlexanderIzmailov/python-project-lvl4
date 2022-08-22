@@ -16,7 +16,9 @@ from django.contrib.messages.views import SuccessMessageMixin
 from .models import *
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import ProtectedError
-
+from .filters import *
+from django_filters.views import FilterView
+from django import forms
 
 def base(request):
     return render(request, 'base.html', context={})
@@ -340,3 +342,30 @@ class LabelDelete(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
             return redirect('labels_list')
 
         return super().post(request, *args, **kwargs)
+
+
+# class TaskList2(ListView):
+#     model = Task
+#     template_name = "tasks2_list.html"
+
+#     def dispatch(self, request, *args, **kwargs):
+#         if not request.user.is_authenticated:
+#             messages.error(request, _("Вы не авторизованы! Пожалуйста, выполните вход."))
+#             return redirect('user_login')
+#         return super().dispatch(request, *args, **kwargs)
+
+
+# def task_list_2(request):
+#     f = TaskFilter(request.GET, queryset=Task.objects.all())
+#     return render(request, 'Task_filter.html', {'filter': f})
+
+import django_filters
+
+class TaskList2(FilterView):
+    # model = Task
+    template_name = "tasks_filter.html"
+    filterset_class = TaskFilter
+    # filterset_fields = ['status', 'executor', 'labels']
+    # filterset_fields = ['status',]
+
+    # widgets={'labels': django_filters.NumberFilter(attrs={'cols': 80, 'rows': 20})}

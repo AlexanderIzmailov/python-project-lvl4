@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% load bootstrap4 %}
+
+{% block content %}
+    <form method="get">
+        {{ filter.form.as_p }}
+        <input type="submit" />
+    </form>
+    {% for obj in filter.qs %}
+        {{ obj.name }} - ${{ obj.labels }}<br />
+    {% endfor %}
+{% endblock %}

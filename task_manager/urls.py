@@ -16,6 +16,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from task_manager import views
+from django_filters.views import FilterView
+from .models import *
 
 urlpatterns = [
     path('', views.base, name='home'),
@@ -43,4 +45,6 @@ urlpatterns = [
     path('labels/create/', views.LabelCreate.as_view(), name='labels_create'),
     path('labels/<int:pk>/update/', views.LabelUpdate.as_view(), name='labels_update'),
     path('labels/<int:pk>/delete/', views.LabelDelete.as_view(), name='labels_delete'),
+    path('tasks3/', views.TaskList2.as_view(), name='tasks3_list'),
+    # path('tasks2/', views.task_list_2, name="tasks2_list"),
 ]
