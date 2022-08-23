@@ -36,7 +36,7 @@ urlpatterns = [
     path('statuses/create/', views.StatusCreate.as_view(), name='statuses_create'),
     path('statuses/<int:pk>/update/', views.StatusUpdate.as_view(), name='statuses_update'),
     path('statuses/<int:pk>/delete/', views.StatusDelete.as_view(), name='statuses_delete'),
-    path('tasks/', views.TaskList.as_view(), name='tasks_list'),
+    path('tasks/', views.TaskListWithFilter.as_view(), name='tasks_list'),
     path('tasks/create/', views.TaskCreate.as_view(), name='tasks_create'),
     path('tasks/<int:pk>/update/', views.TaskUpdate.as_view(), name='tasks_update'),
     path('tasks/<int:pk>/delete/', views.TaskDelete.as_view(), name='tasks_delete'),
@@ -45,6 +45,6 @@ urlpatterns = [
     path('labels/create/', views.LabelCreate.as_view(), name='labels_create'),
     path('labels/<int:pk>/update/', views.LabelUpdate.as_view(), name='labels_update'),
     path('labels/<int:pk>/delete/', views.LabelDelete.as_view(), name='labels_delete'),
-    path('tasks3/', views.TaskList2.as_view(), name='tasks3_list'),
+    # path('tasks3/', views.TaskList2.as_view(), name='tasks3_list'),
     # path('tasks2/', views.task_list_2, name="tasks2_list"),
 ]
