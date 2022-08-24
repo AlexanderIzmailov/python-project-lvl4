@@ -17,4 +17,6 @@ jobs:
       - name: install2
         run: make install
       - name: run-test
+        env: 
+          SECRET_KEY: "2a(m1s=2pk--_!oy(e21z6mi8m6i+8c^4x7y!7^57#ksmwbf4a"
         run:  make test
