@@ -167,7 +167,7 @@ class StatusDelete(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
     model = Status
     template_name = "statuses_delete.html"
     success_url = reverse_lazy('statuses_list')
-    success_message = _('Статус удален!')
+    success_message = _('Статус успешно удалён')
     login_url = reverse_lazy('user_login')
 
     def dispatch(self, request, *args, **kwargs):
@@ -178,7 +178,7 @@ class StatusDelete(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
 
     def post(self, request, *args, **kwargs):
         if self.get_object().task_set.all():
-            messages.error(request, _('Невозможно удалить статус, потому что он используется.'))
+            messages.error(request, _('Невозможно удалить статус, потому что он используется'))
             return redirect('statuses_list')
 
         return super().post(request, *args, **kwargs)
@@ -310,7 +310,7 @@ class LabelDelete(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
     model = Label
     template_name = "labels_delete.html"
     success_url = reverse_lazy('labels_list')
-    success_message = _('Метка удалена!')
+    success_message = _('Метка успешно удалена')
     login_url = reverse_lazy('user_login')
 
     def dispatch(self, request, *args, **kwargs):

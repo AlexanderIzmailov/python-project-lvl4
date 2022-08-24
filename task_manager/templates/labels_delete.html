@@ -9,7 +9,7 @@
     <form method="post">{% csrf_token %}
         <p>{% translate "Вы действительно хотите удалить метку" %} "{{ object }}"?</p>
         {% bootstrap_form form%}
-        {% buttons submit="Подтвердить" %}
+        {% buttons submit="Да, удалить" %}
         {% endbuttons %}
     </form>
 </div>
