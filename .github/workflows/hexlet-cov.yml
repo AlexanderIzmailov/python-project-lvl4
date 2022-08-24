@@ -26,5 +26,3 @@ jobs:
         with:
           coverageCommand: make test-cov
           debug: true
-      - name: Export xml
-        run: poetry run coverage xml
