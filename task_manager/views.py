@@ -3,13 +3,11 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import logout
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.models import User
-from django.contrib.auth.forms import UserChangeForm, UserCreationForm, AuthenticationForm
+from django.contrib.auth.forms import AuthenticationForm
 from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
 from django.views.generic.base import TemplateView
 from django.urls import reverse_lazy
 from .forms import *
-from django.views import View
-from django.http import HttpResponse
 from django.contrib import messages
 from django.utils.translation import gettext as _
 from django.contrib.messages.views import SuccessMessageMixin
@@ -343,8 +341,6 @@ class LabelDelete(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
 
         return super().post(request, *args, **kwargs)
 
-
-import django_filters
 
 class TaskListWithFilter(FilterView):
     template_name = "tasks_list_with_filter.html"

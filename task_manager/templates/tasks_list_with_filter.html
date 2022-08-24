@@ -12,7 +12,7 @@
             <form method="get" class="form-row center">
                 <div class="form-group col-md-4">
                     <label for="status">{% translate "Статус" %}</label>
-                    <select class="form-control" id="status", name="status">
+                    <select class="form-control" id="id_status", name="status">
                         {% for value, label in filter.form.status.field.choices %}
                             <option value="{{value}}"
                             {% if filter.form.status.value|stringformat:'s' == value|stringformat:'s' %}
@@ -24,7 +24,7 @@
 
                 <div class="form-group col-md-4">
                     <label for="executor">{% translate "Исполнитель" %}</label>
-                    <select class="form-control" id="executor", name="executor">
+                    <select class="form-control" id="id_executor", name="executor">
                         {% for value, label in filter.form.executor.field.choices %}
                             <option value="{{value}}"
                             {% if filter.form.executor.value|stringformat:'s' == value|stringformat:'s' %}
@@ -36,7 +36,7 @@
 
                 <div class="form-group col-md-4">
                     <label for="executor" class="center">{% translate "Метка" %}</label>
-                    <select class="form-control" id="labels", name="labels">
+                    <select class="form-control" id="id_label", name="label">
                         {% for value, label in filter.form.labels.field.choices %}
                             <option value="{{value}}"
                             {% if filter.form.labels.value|stringformat:'s' == value|stringformat:'s' %}
