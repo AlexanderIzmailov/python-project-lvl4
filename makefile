@@ -10,3 +10,6 @@ test:
 test-cov:
 	poetry run coverage run manage.py test
 	poetry run coverage xml
+
+build:
+	poetry build
