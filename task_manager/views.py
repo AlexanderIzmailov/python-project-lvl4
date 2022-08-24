@@ -50,7 +50,7 @@ class UserUpdate(SuccessMessageMixin, UpdateView):
     form_class = MyRegisterUserForm
     template_name = "update.html"
     success_url = reverse_lazy('users_list')
-    success_message = _('Учетная запись изменена!')
+    success_message = _('Пользователь успешно изменён')
 
     def dispatch(self, request, *args, **kwargs):
         if not request.user.is_authenticated:
