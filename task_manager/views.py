@@ -118,7 +118,7 @@ class LoginUser(LoginView):
 
 def logout_user(request):
     logout(request)
-    messages.success(request, _("Вы вышли!"))
+    messages.success(request, _("Вы разлогинены!"))
     return redirect('home')
 
 
