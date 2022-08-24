@@ -55,6 +55,17 @@ python-versions = ">=3.6.0"
 unicode_backport = ["unicodedata2"]
 
 [[package]]
+name = "coverage"
+version = "6.4.4"
+description = "Code coverage measurement for Python"
+category = "dev"
+optional = false
+python-versions = ">=3.7"
+
+[package.extras]
+toml = ["tomli"]
+
+[[package]]
 name = "django"
 version = "4.0.6"
 description = "A high-level Python web framework that encourages rapid development and clean, pragmatic design."
@@ -243,7 +254,7 @@ socks = ["PySocks (>=1.5.6,!=1.5.7,<2.0)"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "fb9ab742422fd1212f3f3372d1fc1c1efbb20fa3ddc19ef47fb7fb994de005ba"
+content-hash = "8d8f9c9938d327a27b511dd8d789991841438647957bf96c05b9663ca41b9c9e"
 
 [metadata.files]
 asgiref = [
@@ -274,6 +285,7 @@ beautifulsoup4 = [
 ]
 certifi = []
 charset-normalizer = []
+coverage = []
 django = []
 django-bootstrap4 = []
 django-filter = []
