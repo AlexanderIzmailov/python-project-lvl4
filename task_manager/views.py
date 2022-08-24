@@ -112,7 +112,7 @@ class LoginUser(LoginView):
     template_name = "login.html"
 
     def get_success_url(self) -> str:
-        messages.success(self.request, _("Вы авторизованы!"))
+        messages.success(self.request, _("Вы залогинены!"))
         return reverse_lazy('home')
 
 
