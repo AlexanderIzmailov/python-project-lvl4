@@ -119,7 +119,7 @@ class LoginUser(LoginView):
 def logout_user(request):
     logout(request)
     messages.success(request, _("Вы вышли!"))
-    return redirect('users_list')
+    return redirect('home')
 
 
 class StatusList(LoginRequiredMixin, ListView):
