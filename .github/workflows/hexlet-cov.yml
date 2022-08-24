@@ -22,6 +22,7 @@ jobs:
         uses: paambaati/codeclimate-action@v2.7.4
         env:
           CC_TEST_REPORTER_ID: 8d754febc32b347156b5e488a183740cf60941014d9e928ef8c5369140c13faa
+          SECRET_KEY: "2a(m1s=2pk--_!oy(e21z6mi8m6i+8c^4x7y!7^57#ksmwbf4a"
         with:
           coverageCommand: make test-cov
           debug: true
