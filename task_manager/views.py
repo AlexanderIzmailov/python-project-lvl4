@@ -67,7 +67,7 @@ class UserDelete(SuccessMessageMixin, DeleteView):
     model = User
     template_name = "users_delete.html"
     success_url = reverse_lazy('users_list')
-    success_message = _('Пользователь удален!')
+    success_message = _('Пользователь успешно удалён')
 
     def dispatch(self, request, *args, **kwargs):
         if not request.user.is_authenticated:
