@@ -153,7 +153,7 @@ class StatusUpdate(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     form_class = MyCreateStatusForm
     template_name = "statuses_update.html"
     success_url = reverse_lazy('statuses_list')
-    success_message = _('Статус изменен!')
+    success_message = _('Статус успешно изменён')
     login_url = reverse_lazy('user_login')
 
     def dispatch(self, request, *args, **kwargs):
@@ -222,7 +222,7 @@ class TaskUpdate(SuccessMessageMixin, UpdateView):
     form_class = MyCreateTaskForm
     template_name = "tasks_update.html"
     success_url = reverse_lazy('tasks_list')
-    success_message = _('Задача изменена!')
+    success_message = _('Задача успешно изменена')
 
     def dispatch(self, request, *args, **kwargs):
         if not request.user.is_authenticated:
@@ -296,7 +296,7 @@ class LabelUpdate(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     form_class = MyCreateLabelForm
     template_name = "labels_update.html"
     success_url = reverse_lazy('labels_list')
-    success_message = _('Метка изменена!')
+    success_message = _('Метка успешно изменена')
     login_url = reverse_lazy('user_login')
 
     def dispatch(self, request, *args, **kwargs):
