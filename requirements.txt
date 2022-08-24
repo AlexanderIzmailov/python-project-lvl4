@@ -49,4 +49,5 @@ requests==0.12.1; \
     --hash=sha256:9ce56b87180c06728d96ca734055675abf8f5cc3136e0d7712a6260430685589
 certifi==0.0.7; \
     --hash=sha256:6dec7d3c6f3d4ed0a50fb15f8fd41c0bb1b17998eb8c103d0f34d61c19061e36
-chardet2==2.0.3;
+chardet2==2.0.3; \
+    --hash=sha256:ed3bf9c76f8852acae3191b6747f370ce7630b6638518f4ef8c51065b1f957df
