@@ -18,7 +18,7 @@ class MyRegisterUserForm(UserCreationForm):
 
 
 class MyCreateStatusForm(forms.ModelForm):
-    name = forms.CharField(label=_('Статус'), widget=forms.TextInput(attrs={'class': 'form-input'}))
+    name = forms.CharField(label=_('Имя'), widget=forms.TextInput(attrs={'class': 'form-input'}))
 
     class Meta:
         model = Status
@@ -38,7 +38,7 @@ class MyCreateTaskForm(forms.ModelForm):
 
 
 class MyCreateLabelForm(forms.ModelForm):
-    name = forms.CharField(label=_('Метка'), widget=forms.TextInput(attrs={'class': 'form-input'}))
+    name = forms.CharField(label=_('Имя'), widget=forms.TextInput(attrs={'class': 'form-input'}))
 
     class Meta:
         model = Label
