@@ -16,8 +16,6 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from task_manager import views
-from django_filters.views import FilterView
-from .models import *
 
 urlpatterns = [
     path('', views.base, name='home'),

@@ -1,4 +1,3 @@
-import re
 from django.shortcuts import render, redirect
 from django.contrib.auth import logout
 from django.contrib.auth.views import LoginView
@@ -7,16 +6,15 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
 from django.views.generic.base import TemplateView
 from django.urls import reverse_lazy
-from .forms import *
+from .forms import MyRegisterUserForm, MyCreateStatusForm, MyCreateTaskForm, MyCreateLabelForm
 from django.contrib import messages
 from django.utils.translation import gettext as _
 from django.contrib.messages.views import SuccessMessageMixin
-from .models import *
+from .models import Status, Task, Label
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.db.models import ProtectedError
-from .filters import *
+from .filters import TaskFilter
 from django_filters.views import FilterView
-from django import forms
+
 
 def base(request):
     return render(request, 'base.html', context={})
@@ -88,7 +86,6 @@ class UserDelete(SuccessMessageMixin, DeleteView):
         return super().post(request, *args, **kwargs)
 
 
-
 class TestPage(TemplateView):
     template_name = "test.html"
 
@@ -130,7 +127,6 @@ class StatusList(LoginRequiredMixin, ListView):
     template_name = "statuses_list.html"
     login_url = reverse_lazy('user_login')
 
-
     def dispatch(self, request, *args, **kwargs):
         if not request.user.is_authenticated:
             messages.error(request, _("Вы не авторизованы! Пожалуйста, выполните вход."))
@@ -144,7 +140,6 @@ class StatusCreate(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     success_url = reverse_lazy('statuses_list')
     success_message = _('Статус создан!')
     login_url = reverse_lazy('user_login')
-
 
     def dispatch(self, request, *args, **kwargs):
         if not request.user.is_authenticated:
@@ -161,7 +156,6 @@ class StatusUpdate(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     success_message = _('Статус изменен!')
     login_url = reverse_lazy('user_login')
 
-
     def dispatch(self, request, *args, **kwargs):
         if not request.user.is_authenticated:
             messages.error(request, _("Вы не авторизованы! Пожалуйста, выполните вход."))
@@ -176,13 +170,11 @@ class StatusDelete(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
     success_message = _('Статус удален!')
     login_url = reverse_lazy('user_login')
 
-
     def dispatch(self, request, *args, **kwargs):
         if not request.user.is_authenticated:
             messages.error(request, _("Вы не авторизованы! Пожалуйста, выполните вход."))
             return redirect('user_login')
         return super().dispatch(request, *args, **kwargs)
-
 
     def post(self, request, *args, **kwargs):
         if self.get_object().task_set.all():
@@ -238,18 +230,17 @@ class TaskUpdate(SuccessMessageMixin, UpdateView):
             return redirect('user_login')
         return super().dispatch(request, *args, **kwargs)
 
-
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['btn'] = _("Изменить")
         return context
 
-class TaskDelete( SuccessMessageMixin, DeleteView):
+
+class TaskDelete(SuccessMessageMixin, DeleteView):
     model = Task
     template_name = "tasks_delete.html"
     success_url = reverse_lazy('tasks_list')
     success_message = _('Задача удалена!')
-
 
     def dispatch(self, request, *args, **kwargs):
         if not request.user.is_authenticated:
@@ -267,7 +258,6 @@ class TaskDetail(DetailView):
     template_name = 'tasks_detail.html'
     context_object_name = 'task_detail'
 
-
     def dispatch(self, request, *args, **kwargs):
         if not request.user.is_authenticated:
             messages.error(request, _("Вы не авторизованы! Пожалуйста, выполните вход."))
@@ -279,7 +269,6 @@ class LabelList(LoginRequiredMixin, ListView):
     model = Label
     template_name = "labels_list.html"
     login_url = reverse_lazy('user_login')
-
 
     def dispatch(self, request, *args, **kwargs):
         if not request.user.is_authenticated:
@@ -294,7 +283,6 @@ class LabelCreate(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     success_url = reverse_lazy('labels_list')
     success_message = _('Метка создана!')
     login_url = reverse_lazy('user_login')
-
 
     def dispatch(self, request, *args, **kwargs):
         if not request.user.is_authenticated:
@@ -311,7 +299,6 @@ class LabelUpdate(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     success_message = _('Метка изменена!')
     login_url = reverse_lazy('user_login')
 
-
     def dispatch(self, request, *args, **kwargs):
         if not request.user.is_authenticated:
             messages.error(request, _("Вы не авторизованы! Пожалуйста, выполните вход."))
@@ -326,13 +313,11 @@ class LabelDelete(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
     success_message = _('Метка удалена!')
     login_url = reverse_lazy('user_login')
 
-
     def dispatch(self, request, *args, **kwargs):
         if not request.user.is_authenticated:
             messages.error(request, _("Вы не авторизованы! Пожалуйста, выполните вход."))
             return redirect('user_login')
         return super().dispatch(request, *args, **kwargs)
-
 
     def post(self, request, *args, **kwargs):
         if self.get_object().task_set.all():
@@ -345,7 +330,6 @@ class LabelDelete(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
 class TaskListWithFilter(FilterView):
     template_name = "tasks_list_with_filter.html"
     filterset_class = TaskFilter
-
 
     def dispatch(self, request, *args, **kwargs):
         if not request.user.is_authenticated:

@@ -11,6 +11,9 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 from pathlib import Path
+import os
+import rollbar
+from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,9 +23,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-
-from dotenv import load_dotenv
-import os
 
 load_dotenv()
 SECRET_KEY = os.getenv("SECRET_KEY")
@@ -134,8 +134,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Mine
 
-import os
-
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 ROLLBAR = {
@@ -143,5 +141,5 @@ ROLLBAR = {
     'environment': 'development' if DEBUG else 'production',
     'root': BASE_DIR,
 }
-import rollbar
+
 rollbar.init(**ROLLBAR)

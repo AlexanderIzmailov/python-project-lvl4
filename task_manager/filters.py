@@ -1,10 +1,6 @@
 import django_filters
-from .models import *
+from .models import Task, Label
 from django import forms
-import logging
-
-
-
 
 
 class TaskFilter(django_filters.FilterSet):
@@ -39,4 +35,3 @@ class TaskFilter(django_filters.FilterSet):
     # widget = {
     #     'labels': forms.TextInput(attrs={'class': 'form-control'})
     # }
-
