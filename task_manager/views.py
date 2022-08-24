@@ -48,7 +48,7 @@ class UsersDetail(DetailView):
 class UserUpdate(SuccessMessageMixin, UpdateView):
     model = User
     form_class = MyRegisterUserForm
-    template_name = "register.html"
+    template_name = "update.html"
     success_url = reverse_lazy('users_list')
     success_message = _('Учетная запись изменена!')
 
@@ -138,7 +138,7 @@ class StatusCreate(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     form_class = MyCreateStatusForm
     template_name = "statuses_create.html"
     success_url = reverse_lazy('statuses_list')
-    success_message = _('Статус создан!')
+    success_message = _('Статус успешно создан')
     login_url = reverse_lazy('user_login')
 
     def dispatch(self, request, *args, **kwargs):
@@ -151,7 +151,7 @@ class StatusCreate(LoginRequiredMixin, SuccessMessageMixin, CreateView):
 class StatusUpdate(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     model = Status
     form_class = MyCreateStatusForm
-    template_name = "statuses_create.html"
+    template_name = "statuses_update.html"
     success_url = reverse_lazy('statuses_list')
     success_message = _('Статус изменен!')
     login_url = reverse_lazy('user_login')
@@ -199,7 +199,7 @@ class TaskCreate(SuccessMessageMixin, CreateView):
     form_class = MyCreateTaskForm
     template_name = "tasks_create.html"
     success_url = reverse_lazy('tasks_list')
-    success_message = _('Задача создана!')
+    success_message = _('Задача успешно создана')
 
     def form_valid(self, form):
         form.instance.author = self.request.user
@@ -220,7 +220,7 @@ class TaskCreate(SuccessMessageMixin, CreateView):
 class TaskUpdate(SuccessMessageMixin, UpdateView):
     model = Task
     form_class = MyCreateTaskForm
-    template_name = "tasks_create.html"
+    template_name = "tasks_update.html"
     success_url = reverse_lazy('tasks_list')
     success_message = _('Задача изменена!')
 
@@ -281,7 +281,7 @@ class LabelCreate(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     form_class = MyCreateLabelForm
     template_name = "labels_create.html"
     success_url = reverse_lazy('labels_list')
-    success_message = _('Метка создана!')
+    success_message = _('Метка успешно создана')
     login_url = reverse_lazy('user_login')
 
     def dispatch(self, request, *args, **kwargs):
@@ -294,7 +294,7 @@ class LabelCreate(LoginRequiredMixin, SuccessMessageMixin, CreateView):
 class LabelUpdate(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     model = Label
     form_class = MyCreateLabelForm
-    template_name = "labels_create.html"
+    template_name = "labels_update.html"
     success_url = reverse_lazy('labels_list')
     success_message = _('Метка изменена!')
     login_url = reverse_lazy('user_login')
