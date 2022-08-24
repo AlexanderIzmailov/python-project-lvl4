@@ -27,8 +27,9 @@ django-filter==22.1; python_version >= "3.7" \
     --hash=sha256:ed429e34760127e3520a67f415bec4c905d4649fbe45d0d6da37e6ff5e0287eb
 django==4.0.6; python_version >= "3.8" \
     --hash=sha256:ca54ebedfcbc60d191391efbf02ba68fb52165b8bf6ccd6fe71f098cac1fe59e
-rollbar==0.16.3; six >= 1.9.0 and python_version >= "3.8" \
+rollbar==0.16.3; python_version >= "3.8" \
     --hash=sha256:f06e23b36d7d1b547f32f287da9367b9bf53319f611da0ec9e891859507ac94e
+six==1.9.0;
 gunicorn==20.1.0; python_version >= "3.5" \
     --hash=sha256:9dcc4547dbb1cb284accfb15ab5667a0e5d1881cc443e0677b4882a4067a807e \
     --hash=sha256:e0a968b5ba15f8a328fdfd7ab1fcb5af4470c28aaf7e55df02a99bc13138e6e8
