@@ -42,6 +42,15 @@
                 <p>{{ task_detail.time_create }}</p>
                 </div>
             </div>
+            <div class="row">
+                <div class="col">
+                <p>{% translate "Метки" %}:</p>
+                <ul>
+                    {% for l in task_detail.labels.all %}
+                    <li> {{ l.name }} </li>
+                    {% endfor %}
+                </ul>
+            </div>
             <br>
             <a href="{% url 'tasks_update' pk=task_detail.id %}">{% translate "Изменить" %}</a>
             <a href="{% url 'tasks_delete' pk=task_detail.id %}">{% translate "Удалить" %}</a>
