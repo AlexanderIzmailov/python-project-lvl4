@@ -16,9 +16,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from task_manager import views
+from django.views.generic.base import TemplateView
 
 urlpatterns = [
-    path('', views.base, name='home'),
+    # path('', views.base, name='home'),
+    path('', TemplateView.as_view(template_name="base.html"), name='home'),
     # path('users/', views.users, name='users'),
     path('users/', views.UserList.as_view(), name='users_list'),
     path('users/<int:pk>/details/', views.UsersDetail.as_view(), name='users_details'),
