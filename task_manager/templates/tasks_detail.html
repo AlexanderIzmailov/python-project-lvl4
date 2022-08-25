@@ -15,7 +15,7 @@
                 <p>{% translate "Автор" %}:</p>
             </div>
             <div class="col">
-                <p>{{ task_detail.author }}</p>
+                <p>{{ task_detail.author.first_name }} {{ task_detail.author.last_name }}</p>
             </div>
             </div>
             <div class="row">
@@ -23,7 +23,7 @@
                 <p>{% translate "Исполнитель" %}:</p>
                 </div>
                 <div class="col">
-                <p>{{ task_detail.executor }}</p>
+                <p>{{ task_detail.executor.first_name }} {{ task_detail.executor.last_name }}</p>
                 </div>
             </div>
             <div class="row">

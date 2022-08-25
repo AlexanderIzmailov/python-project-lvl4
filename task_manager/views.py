@@ -220,7 +220,7 @@ class TaskCreate(SuccessMessageMixin, CreateView):
 class TaskUpdate(SuccessMessageMixin, UpdateView):
     model = Task
     form_class = MyCreateTaskForm
-    template_name = "tasks_update.html"
+    template_name = "tasks_create.html"
     success_url = reverse_lazy('tasks_list')
     success_message = _('Задача успешно изменена')
 
