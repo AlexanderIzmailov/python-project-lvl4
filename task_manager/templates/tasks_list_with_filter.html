@@ -11,7 +11,7 @@
         <div class="card-body bg-light">
             <form method="get" class="form-row center">
                 <div class="form-group col-md-4">
-                    <label for="status">{% translate "Статус" %}</label>
+                    <label for="id_status">{% translate "Статус" %}</label>
                     <select class="form-control" id="id_status", name="status">
                         {% for value, label in filter.form.status.field.choices %}
                             <option value="{{value}}"
@@ -23,7 +23,7 @@
                 </div>
 
                 <div class="form-group col-md-4">
-                    <label for="executor">{% translate "Исполнитель" %}</label>
+                    <label for="id_executor">{% translate "Исполнитель" %}</label>
                     <select class="form-control" id="id_executor", name="executor">
                         {% for value, label in filter.form.executor.field.choices %}
                             <option value="{{value}}"
@@ -35,7 +35,7 @@
                 </div>
 
                 <div class="form-group col-md-4">
-                    <label for="executor" class="center">{% translate "Метка" %}</label>
+                    <label for="id_label" class="center">{% translate "Метка" %}</label>
                     <select class="form-control" id="id_label", name="label">
                         {% for value, label in filter.form.labels.field.choices %}
                             <option value="{{value}}"
