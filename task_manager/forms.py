@@ -25,11 +25,16 @@ class MyCreateStatusForm(forms.ModelForm):
         fields = ('name',)
 
 
+class MyModelChoiceField(forms.ModelChoiceField):
+    def label_from_instance(self, obj):
+        return str(obj.first_name + " " + obj.last_name)
+
+
 class MyCreateTaskForm(forms.ModelForm):
     name = forms.CharField(label=_('Имя'), widget=forms.TextInput(attrs={'class': 'form-input'}))
     description = forms.CharField(label=_('Описание'), required=False, widget=forms.Textarea(attrs={'cols': '40', 'rows': '10', 'class': 'form-input'}))
     status = forms.ModelChoiceField(label=_('Статус'), queryset=Status.objects.all())
-    executor = forms.ModelChoiceField(label=_('Исполнитель'), queryset=User.objects.all(), required=False)
+    executor = MyModelChoiceField(label=_('Исполнитель'), queryset=User.objects.all(), required=False)
     labels = forms.ModelMultipleChoiceField(label=_('Метки'), queryset=Label.objects.all(), required=False)
 
     class Meta:
