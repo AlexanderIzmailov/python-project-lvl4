@@ -37,9 +37,9 @@
                 <div class="form-group col-md-4">
                     <label for="id_label" class="center">{% translate "Метка" %}</label>
                     <select class="form-control" id="id_label", name="label">
-                        {% for value, label in filter.form.labels.field.choices %}
+                        {% for value, label in filter.form.label.field.choices %}
                             <option value="{{value}}"
-                            {% if filter.form.labels.value|stringformat:'s' == value|stringformat:'s' %}
+                            {% if filter.form.label.value|stringformat:'s' == value|stringformat:'s' %}
                             selected
                             {% endif %}>{{label}}</option>
                         {% endfor %}
