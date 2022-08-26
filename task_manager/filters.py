@@ -1,6 +1,7 @@
 import django_filters
 from .models import Task, Label
 from django import forms
+from django.contrib.auth.models import User
 
 
 class TaskFilter(django_filters.FilterSet):
@@ -8,6 +9,7 @@ class TaskFilter(django_filters.FilterSet):
     label = django_filters.ModelChoiceFilter(queryset=Label.objects.all())
     self_tasks = django_filters.BooleanFilter(field_name='author', widget=forms.CheckboxInput, method='is_author')
     # mine = forms.BooleanField()
+
 
     def is_author(self, queryset, name, value):
         user = self.request.user

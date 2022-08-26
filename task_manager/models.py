@@ -31,3 +31,9 @@ class Label(models.Model):
 
     def __str__(self):
         return self.name
+
+
+def get_full_name(self):
+    return self.first_name + " " + self.last_name
+
+User.add_to_class("__str__", get_full_name)
