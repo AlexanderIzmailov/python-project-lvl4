@@ -35,11 +35,11 @@ class MyCreateTaskForm(forms.ModelForm):
     description = forms.CharField(label=_('Описание'), required=False, widget=forms.Textarea(attrs={'cols': '40', 'rows': '10', 'class': 'form-input'}))
     status = forms.ModelChoiceField(label=_('Статус'), queryset=Status.objects.all())
     executor = MyModelChoiceField(label=_('Исполнитель'), queryset=User.objects.all(), required=False)
-    labels = forms.ModelMultipleChoiceField(label=_('Метки'), queryset=Label.objects.all(), required=False)
+    label = forms.ModelMultipleChoiceField(label=_('Метки'), queryset=Label.objects.all(), required=False)
 
     class Meta:
         model = Task
-        fields = ('name', 'description', 'status', 'executor', 'labels')
+        fields = ('name', 'description', 'status', 'executor', 'label')
 
 
 class MyCreateLabelForm(forms.ModelForm):
