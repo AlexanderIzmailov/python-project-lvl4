@@ -7,7 +7,7 @@
     <h1>{% translate "Удаление задачи" %}</h1>
     <br>
     <form method="post">{% csrf_token %}
-        <p>{% translate "Вы действительно хотите удалить задачу" %} "{{ object }}"?</p>
+        <p>{% translate "Вы действительно хотите удалить задачу" %} {{ object.name }}?</p>
         {% bootstrap_form form%}
         {% buttons submit="Да, удалить" %}
         {% endbuttons %}
