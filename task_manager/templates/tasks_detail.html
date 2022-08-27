@@ -46,7 +46,7 @@
                 <div class="col">
                 <p>{% translate "Метки" %}:</p>
                 <ul>
-                    {% for l in task_detail.label.all %}
+                    {% for l in task_detail.labels.all %}
                     <li> {{ l.name }} </li>
                     {% endfor %}
                 </ul>
