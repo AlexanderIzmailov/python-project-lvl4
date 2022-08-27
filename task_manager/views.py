@@ -246,7 +246,7 @@ class TaskDelete(SuccessMessageMixin, DeleteView):
         if not request.user.is_authenticated:
             messages.error(request, _("Вы не авторизованы! Пожалуйста, выполните вход."))
             return redirect('user_login')
-        if self.get_object().pk is not request.user.id and not request.user.is_superuser:
+        if self.get_object().author.id is not request.user.id and not request.user.is_superuser:
             # return HttpResponse("Permission's error")
             messages.error(request, _("У вас нет прав для удаления задачи другого пользователя"))
             return redirect('tasks_list')
