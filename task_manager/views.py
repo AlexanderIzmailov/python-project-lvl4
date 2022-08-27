@@ -56,7 +56,7 @@ class UserUpdate(SuccessMessageMixin, UpdateView):
         if not request.user.is_authenticated:
             messages.error(request, _("Вы не авторизованы! Пожалуйста, выполните вход."))
             return redirect('user_login')
-        if not request.user.is_authenticated or self.get_object().pk is not request.user.id and not request.user.is_superuser:
+        if self.get_object().pk is not request.user.id and not request.user.is_superuser:
             # return HttpResponse("Permission's error")
             messages.error(request, _("У вас нет прав для изменения другого пользователя"))
             return redirect('users_list')
@@ -80,7 +80,8 @@ class UserDelete(SuccessMessageMixin, DeleteView):
 
     def post(self, request, *args, **kwargs):
         if self.get_object().author.all() or self.get_object().tasks.all():
-            messages.error(request, _('Невозможно удалить пользователя, потому что он связан с задачами.'))
+            messages.error(
+                request, _('Невозможно удалить пользователя, потому что он связан с задачами.'))
             return redirect('users_list')
 
         return super().post(request, *args, **kwargs)

@@ -15,7 +15,11 @@ class Task(models.Model):
     name = models.CharField(max_length=150, unique=True)
     description = models.TextField(max_length=500, blank=True, null=True)
     status = models.ForeignKey(Status, on_delete=models.PROTECT)
-    executor = models.ForeignKey(User, on_delete=models.PROTECT, blank=True, null=True, related_name="tasks")
+    executor = models.ForeignKey(
+        User, on_delete=models.PROTECT,
+        blank=True,
+        null=True,
+        related_name="tasks")
     labels = models.ManyToManyField("Label", through="AttachLabelToTask", blank=True)
     time_create = models.DateTimeField(auto_now_add=True)
 

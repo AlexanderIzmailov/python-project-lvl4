@@ -5,8 +5,12 @@ from django import forms
 
 class TaskFilter(django_filters.FilterSet):
     # labels = django_filters.ModelChoiceFilter(lookup_expr='iexact')
-    label = django_filters.ModelChoiceFilter(queryset=Label.objects.all(), field_name="labels")
-    self_tasks = django_filters.BooleanFilter(field_name='author', widget=forms.CheckboxInput, method='is_author')
+    label = django_filters.ModelChoiceFilter(
+        queryset=Label.objects.all(),
+        field_name="labels")
+    self_tasks = django_filters.BooleanFilter(
+        field_name='author',
+        widget=forms.CheckboxInput, method='is_author')
     # mine = forms.BooleanField()
 
     def is_author(self, queryset, name, value):
