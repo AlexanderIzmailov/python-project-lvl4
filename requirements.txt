@@ -23,7 +23,8 @@ beautifulsoup4==4.11.1; python_full_version >= "3.6.0" and python_version >= "3.
     --hash=sha256:ad9aa55b65ef2808eb405f46cf74df7fcb7044d5cbc26487f96eb2ef2e436693
 certifi==2022.6.15; python_version >= "3.7" and python_version < "4" \
     --hash=sha256:fe86415d55e84719d75f8b69414f6438ac3547d2078ab91b67e779ef69378412
-charset-normalizer==2.1.1; python_version >= "3.7" and python_version < "4" and python_full_version >= "3.6.0"
+charset-normalizer==2.1.1; python_version >= "3.7" and python_version < "4" and python_full_version >= "3.6.0" \
+    --hash=sha256:83e9a75d1911279afd89352c68b45348559d1fc0506b054b346651b5e7fee29f
 django-bootstrap4==22.1; python_version >= "3.7"
 django-filter==22.1; python_version >= "3.7"
 django==4.0.6; python_version >= "3.8"
