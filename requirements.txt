@@ -27,7 +27,8 @@ charset-normalizer==2.1.1; python_version >= "3.7" and python_version < "4" and 
     --hash=sha256:83e9a75d1911279afd89352c68b45348559d1fc0506b054b346651b5e7fee29f
 django-bootstrap4==22.1; python_version >= "3.7" \
     --hash=sha256:b6da4cb54682012ff8baa1a1e672ba30cbfae82fb3d74f4b341109074e8e239f
-django-filter==22.1; python_version >= "3.7"
+django-filter==22.1; python_version >= "3.7" \
+    --hash=sha256:ed429e34760127e3520a67f415bec4c905d4649fbe45d0d6da37e6ff5e0287eb
 django==4.0.6; python_version >= "3.8"
 gunicorn==20.1.0; python_version >= "3.5" \
     --hash=sha256:9dcc4547dbb1cb284accfb15ab5667a0e5d1881cc443e0677b4882a4067a807e \
