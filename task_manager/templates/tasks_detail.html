@@ -50,6 +50,7 @@
                     <li> {{ l.name }} </li>
                     {% endfor %}
                 </ul>
+                </div>
             </div>
             <br>
             <a href="{% url 'tasks_update' pk=task_detail.id %}">{% translate "Изменить" %}</a>
